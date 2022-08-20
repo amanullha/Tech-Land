@@ -1,23 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Footer from './Layouts/Footer';
+import NavBar from './Layouts/NavBar';
+import PrivateRoute from './Routes/Authentication/PrivateRoute';
+import { privateRoutes } from './Routes/privateRoutes';
+import { publicRoutes } from './Routes/publicRoutes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+
+
+      <NavBar>
+
+        <Routes>
+
+
+
+
+
+
+
+
+
+          {/* Render all the public routes  */}
+
+          {
+            publicRoutes.map(({ path, Component }, idx) => <Route
+
+              key={idx}
+              path={path}
+              element={<Component />}
+
+            />)
+          }
+
+
+
+
+
+
+
+          {/* Render all the private routes  */}
+
+
+
+          <Route element={<PrivateRoute />}>
+            {
+              privateRoutes.map(({ path, Component }, idx) => <Route
+
+                key={idx}
+                path={path}
+                element={<Component />}
+
+              />)
+            }
+          </Route>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </Routes>
+
+
+      </NavBar>
+
+      <Footer />
+
+
+
     </div>
   );
 }
