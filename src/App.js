@@ -71,10 +71,10 @@ function App() {
 
         </Routes>
 
-
+        <Footer />
       </NavBar>
 
-      <Footer />
+
 
 
 

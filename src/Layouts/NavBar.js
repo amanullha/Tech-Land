@@ -128,7 +128,7 @@ const NavBar = ({ children }) => {
 
 
     return (
-        <div className='hero shadow-2xl'>
+        <div className='hero shadow-2xl '>
 
             <div class="drawer ">
 

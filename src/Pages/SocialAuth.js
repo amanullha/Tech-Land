@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc'
 import auth from '../firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import Loading from '../Components/Loading/Loading';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialAuth = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -13,6 +14,18 @@ const SocialAuth = () => {
     }
     console.log("error: ", error);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location?.state?.from?.pathname || '/';
+
+
+    if (user) {
+
+        console.log("login user: ", user);
+        console.log("from: ", from);
+        navigate(from, { replace: true });
+    }
 
 
     return (

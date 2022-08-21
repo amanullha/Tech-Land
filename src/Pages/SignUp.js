@@ -1,6 +1,6 @@
 import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import SocialAuth from "./SocialAuth";
 
@@ -23,6 +23,18 @@ const SignUp = () => {
     const { register, formState: { errors, loading }, handleSubmit, reset } = useForm();
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location?.state?.from?.pathname || '/';
+
+
+    if (user) {
+
+        console.log("login user: ", user);
+        console.log("from: ", from);
+        navigate(from, { replace: true });
+    }
+
 
 
     const onSubmit = async (data) => {
